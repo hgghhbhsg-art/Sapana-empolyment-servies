@@ -1,0 +1,6 @@
+{
+  "name": "Sapana Employment Service",
+  "description": "Manpower Staffing & Foreign Employment mobile web application for Sapana Employment Service Pvt. Ltd. (Head Office: Nepalgunj - BP Chowk, Banke | Branch: Bhurigaun, Bardiya). Browse verified overseas vacancies in Greece, Malaysia, UAE, apply online with passport details, track status, and chat live with recruitment advisors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

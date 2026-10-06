@@ -1,0 +1,168 @@
+{
+  "entities": {
+    "Applicant": {
+      "title": "Applicant",
+      "description": "Candidate registrations and job applications submitted to Sapana Employment Service",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique application ID"
+        },
+        "applicationCode": {
+          "type": "string",
+          "description": "Official tracking reference code like SAP-2026-XXXX"
+        },
+        "jobId": {
+          "type": "string",
+          "description": "Target job vacancy identifier"
+        },
+        "jobTitle": {
+          "type": "string",
+          "description": "Title of the applied job role"
+        },
+        "country": {
+          "type": "string",
+          "description": "Target foreign destination country"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Candidate full name as indicated on passport"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Primary mobile contact number"
+        },
+        "passportNumber": {
+          "type": "string",
+          "description": "Passport number for verification"
+        },
+        "status": {
+          "type": "string",
+          "description": "Recruitment pipeline status"
+        },
+        "appliedDate": {
+          "type": "string",
+          "description": "Date of application submission"
+        },
+        "adminRemarks": {
+          "type": "string",
+          "description": "Staff verification notes"
+        },
+        "interviewDate": {
+          "type": "string",
+          "description": "Scheduled interview date if applicable"
+        }
+      },
+      "required": ["fullName", "phone", "passportNumber", "status"]
+    },
+    "Vacancy": {
+      "title": "Vacancy",
+      "description": "Foreign employment job demand listing approved by DoFE",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique vacancy ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Official job designation"
+        },
+        "companyName": {
+          "type": "string",
+          "description": "Overseas employing entity"
+        },
+        "country": {
+          "type": "string",
+          "description": "Destination country"
+        },
+        "city": {
+          "type": "string",
+          "description": "Destination city/region"
+        },
+        "category": {
+          "type": "string",
+          "description": "Industry category"
+        },
+        "salaryMonthly": {
+          "type": "string",
+          "description": "Monthly remuneration package"
+        },
+        "salaryNPRApprox": {
+          "type": "string",
+          "description": "Estimated Nepali Rupees equivalent"
+        },
+        "dutyHours": {
+          "type": "string",
+          "description": "Working hours and schedule"
+        },
+        "vacancyCount": {
+          "type": "number",
+          "description": "Approved candidate quota count"
+        },
+        "appliedCount": {
+          "type": "number",
+          "description": "Total applicants registered"
+        },
+        "status": {
+          "type": "string",
+          "description": "Vacancy active or closed status"
+        },
+        "isUrgent": {
+          "type": "boolean",
+          "description": "Whether priority immediate deployment is required"
+        }
+      },
+      "required": ["title", "companyName", "country", "category", "status"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Live inquiry or support message exchanged between applicant and office desk",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Message ID"
+        },
+        "sender": {
+          "type": "string",
+          "description": "client or staff"
+        },
+        "senderName": {
+          "type": "string",
+          "description": "Name of the sender"
+        },
+        "text": {
+          "type": "string",
+          "description": "Message content"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp string"
+        }
+      },
+      "required": ["sender", "text"]
+    }
+  },
+  "firestore": {
+    "/applicants/{applicantId}": {
+      "schema": {
+        "$ref": "#/entities/Applicant"
+      },
+      "description": "Collection of candidate job applications and registrations"
+    },
+    "/vacancies/{vacancyId}": {
+      "schema": {
+        "$ref": "#/entities/Vacancy"
+      },
+      "description": "Collection of verified foreign employment job vacancies"
+    },
+    "/chat_messages/{messageId}": {
+      "schema": {
+        "$ref": "#/entities/ChatMessage"
+      },
+      "description": "Collection of real-time support chat messages"
+    }
+  }
+}
