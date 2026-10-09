@@ -21,8 +21,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Web Project
+      - name: Build Web App
         run: npm run build
+
+      - name: Create Capacitor Config
+        run: |
+          echo '{"appId": "com.sapana.employment", "appName": "Sapana Employment", "webDir": "dist"}' > capacitor.config.json
 
       - name: Setup Java JDK
         uses: actions/setup-java@v3
@@ -30,14 +34,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Setup Capacitor CLI
+      - name: Install Capacitor Core & Android
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android
-          npx cap init "Sapana Employment" "com.sapana.employment" --web-dir dist
-          npx cap add android
-
-      - name: Copy Assets
-        run: npx cap copy android
+          npx cap add android || true
+          npx cap sync android
 
       - name: Build Android APK
         run: |
