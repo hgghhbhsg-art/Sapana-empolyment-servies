@@ -29,14 +29,7 @@ jobs:
 
       - name: Create Capacitor Config
         run: |
-          cat << 'EOF' > capacitor.config.json
-          {
-            "appId": "com.sapana.employment",
-            "appName": "Sapana Employment",
-            "webDir": "dist",
-            "bundledWebRuntime": false
-          }
-          EOF
+          echo '{"appId": "com.sapana.employment", "appName": "Sapana Employment", "webDir": "dist"}' > capacitor.config.json
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
@@ -44,11 +37,10 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Setup Capacitor and Android Project
+      - name: Setup Capacitor and Android
         run: |
           npm install --legacy-peer-deps @capacitor/core @capacitor/cli @capacitor/android
           npx cap add android || true
-          npx cap copy android
           npx cap sync android
 
       - name: Build Android APK
